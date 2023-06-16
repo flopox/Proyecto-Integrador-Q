@@ -7,10 +7,11 @@ def login():
 
     # Conexión a la base de datos MySQL
     cnx = mysql.connector.connect(
-        host='localhost',
-        user='tu_usuario',
-        password='tu_contraseña',
-        database='nombre_base_de_datos'
+        host='192.168.44.115',
+        port=3306,
+        user='root',
+        password='root',
+        database='emma-gui'
     )
     
     # Cursor para ejecutar consultas SQL
@@ -37,10 +38,11 @@ def create_account():
 
     # Conexión a la base de datos MySQL
     cnx = mysql.connector.connect(
-        host='localhost',
-        user='tu_usuario',
-        password='tu_contraseña',
-        database='nombre_base_de_datos'
+        host='192.168.44.115',
+        port=3306,
+        user='root',
+        password='root',
+        database='emma-gui'
     )
     
     # Cursor para ejecutar consultas SQL
