@@ -73,15 +73,14 @@ window = tk.Tk()
 window.title("Inicio de sesión")
 window.geometry("300x150")
 
-# Etiquetas
+
 username_label = tk.Label(window, text="Usuario:")
 username_label.pack()
-password_label = tk.Label(window, text="Contraseña:")
-password_label.pack()
-
-# Entradas de texto
 username_entry = tk.Entry(window)
 username_entry.pack()
+
+password_label = tk.Label(window, text="Contraseña:")
+password_label.pack()
 password_entry = tk.Entry(window, show="*")
 password_entry.pack()
 
