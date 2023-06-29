@@ -45,30 +45,24 @@ def create_account():
         database='emma-gui'
     )
     
-    # Cursor para ejecutar consultas SQL
     cursor = cnx.cursor()
 
-    # Consulta para verificar si el usuario ya existe en la base de datos
     query = "SELECT * FROM usuarios WHERE username = %s"
     values = (username,)
     cursor.execute(query, values)
 
-    # Verificar si se encontró un registro en la base de datos
     if cursor.fetchone() is not None:
         print("El usuario ya existe")
     else:
-        # Consulta para insertar el nuevo usuario en la base de datos
         query = "INSERT INTO usuarios (username, password) VALUES (%s, %s)"
         values = (username, password)
         cursor.execute(query, values)
         cnx.commit()
         print("Cuenta creada exitosamente")
 
-    # Cerrar la conexión y el cursor
     cursor.close()
     cnx.close()
 
-# Configuración de la ventana principal
 window = tk.Tk()
 window.title("Inicio de sesión")
 window.geometry("300x150")
@@ -84,11 +78,9 @@ password_label.pack()
 password_entry = tk.Entry(window, show="*")
 password_entry.pack()
 
-# Botones
 login_button = tk.Button(window, text="Iniciar sesión", command=login)
 login_button.pack()
 create_account_button = tk.Button(window, text="Crear cuenta", command=create_account)
 create_account_button.pack()
 
-# Ejecución de la ventana
 window.mainloop()
