@@ -226,16 +226,6 @@ def serial_led(val):
     data = str(val).encode()
     ser.write(data)
 
-def led(rec):
-    # print(rec)
-    # if 'prende' in rec:
-    #     talk("Prendiendo leds...")
-    #     serial_led(1)
-    # elif 'apaga' in rec:
-    #     talk("Apagando leds...")
-    #     serial_led(0)
-    pass
-# Diccionario con palabras claves
 key_words = {
     'reproduce': reproduce,
     'busca': busca,
@@ -247,10 +237,8 @@ key_words = {
     'mensaje': enviar_mensaje,
     'cierra': cierra,
     'ciérrate': cierra,
-    'prende': led,
-    'apaga': led
-
 }
+
 def run_Emma():
     talk("Te escucho...")
     while True:
