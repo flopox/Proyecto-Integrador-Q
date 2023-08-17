@@ -265,7 +265,6 @@ def write(f):
     talk("Listo, y ya dejate de joder")
     sub.Popen("nota.txt", shell=True)
 
-
 def open_w_files():
     global namefile_entry, pathf_entry
     window_files = Toplevel()
@@ -296,7 +295,6 @@ def open_w_files():
                          fg="white", width=8, height=1, command=add_files)
     save_button.pack(pady=4)
 
-
 def open_w_apps():
     global nameapps_entry, patha_entry
     window_apps = Toplevel()
@@ -326,7 +324,6 @@ def open_w_apps():
     save_button = Button(window_apps, text="Guardar", bg='#16222A',
                          fg="white", width=8, height=1, command=add_apps)
     save_button.pack(pady=4)
-
 
 def open_w_pages():
     global namepages_entry, pathp_entry
@@ -406,16 +403,6 @@ def add_apps():
     nameapps_entry.delete(0, "end")
     patha_entry.delete(0, "end")
 
-
-def add_pages():
-    name_page = namepages_entry.get().strip()
-    url_pages = pathp_entry.get().strip()
-
-    sites[name_page] = url_pages
-    save_data(name_page, url_pages, "pages.txt")
-    namepages_entry.delete(0, "end")
-    pathp_entry.delete(0, "end")
-
 def add_contacts():
     name_contact = namecontact_entry.get().strip()
     phone = phone_entry.get().strip()
@@ -433,13 +420,60 @@ def save_data(key, value, file_name):
         file = open(file_name, 'a')
         file.write(key + "," + value + "\n")
 
+
+pages = [
+    "https://www.google.com",
+    "https://www.youtube.com",
+    "https://www.facebook.com",
+    "https://www.twitter.com",
+    "https://www.instagram.com",
+    "https://www.wikipedia.org",
+    "https://www.amazon.com",
+    "https://www.linkedin.com",
+    "https://www.reddit.com",
+    "https://www.netflix.com"
+]
+
+def add_pages():
+    while True:
+        page = input("Ingrese un enlace o URL (o escriba 'salir' para detenerse): ")
+        if page.lower() == 'salir':
+            break
+        pages.append(page)
+
+# Función para abrir los enlaces en el navegador
 def talk_pages():
-    if bool(sites) == True:
-        talk("Bien wacho, pudiste agregar una pagina web")
-        for site in sites:
-            talk(site)
+    if len(pages) == 0:
+        print("No hay enlaces para mostrar.")
     else:
-        talk("Aún no agregás ninguna pagina gil")
+        print("Enlaces disponibles:")
+        for idx, page in enumerate(pages, start=1):
+            print(f"{idx}. {page}")
+        
+        choice = input("Seleccione el número de enlace que desea abrir (o escriba 'salir' para detenerse): ")
+        if choice.lower() != 'salir':
+            try:
+                choice_idx = int(choice) - 1
+                if 0 <= choice_idx < len(pages):
+                    webbrowser.open(pages[choice_idx], new=2)
+                else:
+                    print("Selección inválida.")
+            except ValueError:
+                print("Entrada inválida. Por favor, ingrese un número válido.")
+
+# Ejecución del programa
+if __name__ == "__main__":
+    while True:
+        action = input("Seleccione una acción: 'agregar' para agregar enlaces, 'abrir' para abrir enlaces, o 'salir' para terminar: ")
+        
+        if action.lower() == 'agregar':
+            add_pages()
+        elif action.lower() == 'abrir':
+            talk_pages()
+        elif action.lower() == 'salir':
+            break
+        else:
+            print("Acción inválida. Por favor, elija una acción válida.")
 
 def talk_apps():
     if bool(programs) == True:
