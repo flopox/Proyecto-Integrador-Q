@@ -14,8 +14,8 @@ from tkinter import *
 from PIL import Image, ImageTk
 from pygame import mixer                #pip install pygame --pre
 import threading as tr
-import whatsapp as whapp
 import serial as ser                    #pip install serial
+import webbrowser
 
 main_window = Tk()
 main_window.title("Emma asistente virtual")
@@ -192,21 +192,6 @@ def clock(rec):
             mixer.music.stop()
             break
 
-def enviar_mensaje(rec):
-    talk("¿A quién quieres enviar el mensaje?")
-    contact = listen("Te escucho")
-    contact = contact.strip()
-
-    if contact in contacts:
-        for cont in contacts:
-            if cont == contact:
-                contact = contacts[cont]
-                talk("¿Qué mensaje quieres enviarle?")
-                message = listen("Te escucho")
-                talk("Enviando mensaje...")
-                whapp.send_message(contact, message)
-    else:
-        talk("Parece qué aún no has agregado a ese contacto, usa el botón de agregar!")
 
 def cierra(rec):
     for task in programs:
@@ -234,7 +219,6 @@ key_words = {
     'abre': abre,
     'archivo': archivo,
     'escribe': escribe,
-    'mensaje': enviar_mensaje,
     'cierra': cierra,
     'ciérrate': cierra,
 }
