@@ -453,7 +453,7 @@ if __name__ == "__main__":
         if action.lower() == 'agregar':
             add_pages()
         elif action.lower() == 'abrir':
-            talk_pages()
+            talk_pages() 
         elif action.lower() == 'salir':
             break
         else:
